@@ -9,6 +9,8 @@ public class Driver {
 	public Driver(Location loc) {
 		currLoc = loc;
 		coffeeNum = 0;
+		if(currLoc.toString().equals("Coffee"))
+			coffeeNum++;
 	}
 	
 	/*

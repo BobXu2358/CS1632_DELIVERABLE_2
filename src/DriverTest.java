@@ -46,4 +46,29 @@ public class DriverTest {
 		Driver d = new Driver(loc);
 		assertEquals(loc, d.getLocation());
 	}
+	
+	//test if getNumCoffee() returns correct number of coffee if driver passed coffee from other place
+	//getNumCoffee() should return 5
+	@Test
+	public void testGetManyCoffee() {
+		Location loc1 = Mockito.mock(Location.class);
+		Location loc2 = Mockito.mock(Location.class);
+		Mockito.when(loc1.toString()).thenReturn("Hotel");
+		Mockito.when(loc1.toString()).thenReturn("Coffee");
+		Driver d = new Driver(loc1);
+		for(int i = 0; i < 4; i++) {
+			d.moveTo(loc2);
+			d.moveTo(loc1);
+		}
+		assertEquals(5, d.getNumCoffee());
+	}
+	
+	//test if getNumCoffee() returns 1 if driver is spawned at Coffee
+	@Test
+	public void testGetCoffeeSpawnedAtCoffee() {
+		Location loc = Mockito.mock(Location.class);
+		Mockito.when(loc.toString()).thenReturn("Coffee");
+		Driver d = new Driver(loc);
+		assertEquals(1, d.getNumCoffee());
+	}
 }
